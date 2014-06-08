@@ -21,7 +21,7 @@ while loop
 	if valid =~ /:ture/
 		canuse = "ture"
 	elsif valid =~ /:false/
-		canuse = "flase"
+		canuse = "false"
 	elsif valid == ""
 		print "※エラー　アクセス制限されてんでｗｗｗｗｗｗｗｗｗ"
 	else
