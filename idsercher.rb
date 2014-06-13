@@ -18,8 +18,8 @@ while loop
 	sarchID = ((0..9).to_a + ("a".."z").to_a + "_ ".split(//)).sample(4).join.gsub(/ /,"")
 	valid = Net::HTTP.get URI.parse('https://twitter.com/users/username_available?username=' + sarchID)
 
-	if valid =~ /:ture/
-		canuse = "ture"
+	if valid =~ /:true/
+		canuse = "true"
 	elsif valid =~ /:false/
 		canuse = "false"
 	elsif valid == ""
