@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Author : @JO3QMA ぶっちゃん！
 # もっと効率的にプログラム動かす方法あれば教えて下さい。マジで
+#Copyright (C) 2014 JO3QMA
 require 'net/http'
 require 'uri'
 
