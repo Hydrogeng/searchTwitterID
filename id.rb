@@ -1,39 +1,31 @@
 # -*- coding: utf-8 -*-
-# Author : @JO3QMA ぶっちゃん！
-# もっと効率的にプログラム動かす方法あれば教えて下さい。マジで
-#Copyright (C) 2014 JO3QMA
 require 'net/http'
-require 'uri'
 
-Domain = "twitter.com"
-SarchTopURL = "https://twitter.com/users/username_available?username="
-canuse = ""
+def generate_id
+	((0..9).to_a + ("a".."z").to_a + "_ ".split(//)).sample(4).join.gsub(/ /,"")
+end
+def access_url(url, searchID)
+	@url = url + searchID
+	Net::HTTP.get URI.parse(@url)
+rescue => ex
+	print ex.massage, "\n"
+	retry
+end
+SearchURL = "https://twitter.com/"
+SearchSecondURL = "https://twitter.com/users/username_available?username="
 
 while loop
-	sarchID = ((0..9).to_a + ("a".."z").to_a + "_ ".split(//)).sample(4).join.gsub(/ /,"")
-	valid = Net::HTTP.get URI.parse('https://twitter.com/' + sarchID)
+	searchID = generate_id
+	valid = access_url(SearchURL, searchID)
 	if valid =~ /Sorry, that page doesn/
-		valid = Net::HTTP.get URI.parse('https://twitter.com/users/username_available?username=' + sarchID)
-
+		valid = access_url(SearchSecondURL, searchID)
 		if valid =~ /:true/
 			canuse = "true"
-			post = sarchID + ":" + canuse + "\n"
+			post =  searchID + ":" + canuse + "\n"
 			print post
-		elsif valid =~ /:false/
-
 		elsif valid == ""
-			print "※エラー　アクセス制限されてんでｗｗｗｗｗｗｗｗｗ\n"		
+			p "アクセス制限されてまんで"
 		end
-	elsif valid =~ /redirect/
-		canuse = "凍結"
-		post = sarchID + ":" + canuse + "\n"
-	elsif valid =~ /<style /
-		canuse = "使われてる"
-		post = sarchID + ":" + canuse + "\n"
-	else
-		canuse = "false"
-		post = sarchID + ":" + canuse + "\n"
 	end
-
 	valid = ""
 end
