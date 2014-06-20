@@ -7,8 +7,7 @@ end
 def access_url(url, searchID)
 	@url = url + searchID
 	Net::HTTP.get URI.parse(@url)
-rescue => ex
-	print ex.massage, "\n"
+rescue 
 	retry
 end
 SearchURL = "https://twitter.com/"
