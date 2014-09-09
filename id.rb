@@ -23,7 +23,7 @@ while loop
 			post =  searchID + ":" + canuse + "\n"
 			print post
 		elsif valid == ""
-			p "アクセス制限されてまんで"
+			puts "アクセス制限されてまんで"
 		end
 	end
 	valid = ""
